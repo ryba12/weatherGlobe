@@ -1,0 +1,6 @@
+    <div class="weatherInfo" >
+        <p class="weatherInfo__name">{{weather.name}}</p>
+        <p class="weatherInfo__temp">{{weather.main.temp | temperature}}</p>
+        <p class="weatherInfo__description">{{weather.weather[0].description}}</p>
+        <img class="weatherInfo__icon" src="assets/icons/static/{{weather.weather[0].icon}}.svg">
+          </div>

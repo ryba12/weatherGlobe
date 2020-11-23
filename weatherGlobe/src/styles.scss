@@ -1,0 +1,86 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$custom-typography: mat-typography-config(
+  $font-family: 'nunito',
+  $headline: mat-typography-level(1.5em, 3.4em, 700),
+  $body-1: mat-typography-level(0.9em, 1.7em, 500)
+);
+@include mat-base-typography($custom-typography);
+
+html, body { 
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    color: whitesmoke;
+}
+body { 
+    margin: 0; 
+    font-family: 'nunito';
+    background-image: url("./assets/backgroundWalpaper.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+
+ @font-face {
+    font-family: 'nunito';
+    src: url(assets/font/Nunito-Regular.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: 'nunitoBold';
+    src: url(assets/font/Nunito-ExtraBold.ttf) format("opentype");
+  }
+
+ nav {
+    max-height: 10%;
+    padding: 2em 0 0 2em;
+}
+
+ .mat-form-field {
+    width: 100%;
+
+     &-infix {
+        color: black;
+        background-color: white;
+        width: 100%;
+        font-size: 1.4em;
+        border-radius: 10px;
+        border: none !important;
+        padding: 5px;
+    }
+ }
+
+ .mat-stroked-button {
+    border: 1px solid whitesmoke !important;
+    padding: 0 15px;
+    line-height: 34px;
+}
+
+
+.mat-form-field-appearance-legacy {
+	.mat-form-field-label {
+    font-size: 0.9em;
+    font-family: nunito;
+    padding: 7px;
+	}
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.close {
+  max-width: 4%;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+@media only screen and (max-width: 1600px) {
+  html, body { 
+    font-size: 14px;
+}
+
+}

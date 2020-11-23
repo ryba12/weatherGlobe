@@ -1,0 +1,22 @@
+<nav>
+    <button mat-stroked-button routerLink="/logged" class="" color="basic">Panel główny</button>
+</nav>
+<main class="mainSection">
+    <div *ngIf="!weather$" class="searchContainer">
+        <div class="searchContainer__autocomplete">
+            <app-autocomplete-place (locationEmitter)="getEmitLocation($event)"></app-autocomplete-place> 
+        </div>
+    </div>
+
+    <article *ngIf="weather$ | async as weather" class="weatherInfo">
+        <img (click)="closeWeatherInfo()" src="assets/icons/static/close.svg" class="close">
+        <app-weather-info style="width: 100%; text-align: center;" [weather]="weather"></app-weather-info>
+              <button  mat-stroked-button (click)='addLocation(weather)' class="weatherInfo__button" color="basic">Dodaj lokalizację</button>
+            </article>
+
+
+
+</main>
+<div>
+
+</div>

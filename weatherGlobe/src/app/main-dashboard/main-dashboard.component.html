@@ -1,0 +1,25 @@
+<nav>
+    <button mat-stroked-button routerLink="/search" class="" color="basic">Dodaj lokalizację</button>
+</nav>
+<main class="mainSection">
+    <aside class="yourLocationWidget" *ngIf="userWeather$ | async as userWeather">
+        <h5>Twoja lokalizacja</h5>
+        <app-weather-info [weather]="userWeather"></app-weather-info>
+    </aside>
+    <ng-container  *ngIf="weathers$ | async as weathers">
+        <div *ngIf="navButton && weathers.length > 1" class="weatherSlider__navi">
+            <button mat-stroked-button (click)="scroll(false)" color="basic">Cofnij</button>
+            <button mat-stroked-button (click)="scroll(true)" color="basic">Dalej</button>
+        </div>
+        <section class="weatherSlider">
+            <article #sliderList class="weatherSlider__list">
+                <div #sliderBox *ngFor="let weather of weathers" class="weatherSlider__list__box pointer">
+                    <img  (click)="removeLocation(weather.id)" src="assets/icons/static/close.svg" class="weatherSlider__list__box__close pointer close">
+                    <app-weather-info [weather]="weather"></app-weather-info>
+                </div>
+            </article>
+            </section>
+    </ng-container>
+
+
+</main>

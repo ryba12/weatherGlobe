@@ -1,0 +1,118 @@
+@mixin gridItem {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mainSection {
+    width: 100%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.yourLocationWidget {
+    @include gridItem;
+    grid-column: 11 /12;
+    grid-row: 1 /6;
+}
+
+.weatherSlider {
+    @include gridItem;
+    width: 100%;
+    grid-column: 1 / 13;
+    grid-row: 6 / 10;
+
+    
+    &__navi {
+        grid-column: 1 / 3;
+        grid-row: 5 / 5;
+        display: flex;
+        padding: 0.8em;
+        // justify-content: flex-start;
+        button {
+            margin: 1.5em;
+        }
+    }
+
+    &__list {
+        display: -webkit-inline-box;
+        overflow: auto;
+        width: 100%;
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar-track
+        {
+            display: none !important;
+        }
+        
+        &::-webkit-scrollbar
+        {
+        display: none !important;
+        }
+        
+        &::-webkit-scrollbar-thumb
+        {
+        display: none !important;
+        }
+
+
+        &__box {
+            position: relative;
+            width: 266px;
+            padding: 0 2em 0 2em;
+            
+            > .close {
+                display: none;
+            }
+        
+            &:hover {
+                > .close {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .yourLocationWidget {
+        @include gridItem;
+        grid-column: 11 /12;
+        grid-row: 2 /6;
+    }
+
+    .weatherSlider {
+        @include gridItem;
+        width: 100%;
+        grid-column: 1 / 13;
+        grid-row: 6 / 10;
+    
+        
+        &__navi {
+            display: flex;
+            grid-column: 1 / 13;
+            grid-row: 5 / 5;
+            justify-content: space-between;
+            button {
+                margin: 1.5em;
+            }
+        }
+    
+        &__list {
+            margin-top: 1.5em;
+            &__box {
+                width: 100%;
+                padding: 0;
+                text-align: center;
+
+                > .close {
+                    display: block;
+                    max-width: 6%;
+                    margin-right: 1em;
+                }
+            }
+        }
+    }
+  }

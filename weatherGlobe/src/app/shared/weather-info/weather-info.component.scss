@@ -1,0 +1,23 @@
+.weatherInfo {
+    &__name {
+        font-size: 2em;
+        margin-bottom: 0.8em;
+    }
+    &__icon {
+        font-size: 2em;
+        max-width: 25%;
+    }
+    &__description {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+    &__temp {
+        font-size: 3.5em;
+        font-family: nunitoBold;
+        margin-bottom: 0.5em;
+
+    }
+}
