@@ -21,7 +21,7 @@ export class MainDashboardComponent implements OnInit, AfterViewInit {
   userPosition: Gps;
   navButton: boolean;
 
-  constructor( private apiService: ApiService, private httpService: HttpService ) { }
+  constructor(private apiService: ApiService, private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.getUserLocation();
@@ -29,20 +29,20 @@ export class MainDashboardComponent implements OnInit, AfterViewInit {
     this.apiService.checkLocationsSubject();
     this.toggleNavButtons()
   }
-ngAfterViewInit(): void {
-  this.toggleNavButtons()
-}
+  ngAfterViewInit(): void {
+    this.toggleNavButtons()
+  }
 
   scroll(scroll: boolean): void {
     const slider = this.slider.nativeElement as HTMLElement;
     if (scroll) {
       slider.scroll({
-        left: slider.scrollLeft +=slider.firstElementChild.clientWidth,
+        left: slider.scrollLeft += slider.firstElementChild.clientWidth,
         behavior: 'smooth'
       });
     } else {
       slider.scroll({
-        left: slider.scrollLeft -=slider.firstElementChild.clientWidth,
+        left: slider.scrollLeft -= slider.firstElementChild.clientWidth,
         behavior: 'smooth'
       });
     }
@@ -50,28 +50,28 @@ ngAfterViewInit(): void {
   }
 
   getUserLocation(): void {
-if(window.sessionStorage.getItem('userPosition')) {
- this.userPosition = JSON.parse(window.sessionStorage.getItem('userPosition'));
- this.userWeather$ = this.httpService.getWeatherWithLocation(this.userPosition).pipe();
-} else {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const {longitude, latitude} = position.coords;
-      this.userPosition = {longitude: longitude, latitude: latitude}
-      window.sessionStorage.setItem('userPosition', JSON.stringify(this.userPosition))
-      this.userWeather$ = this.httpService.getWeatherWithLocation(this.userPosition).pipe(
-        map(w => {
-          const { id, name, weather, main }: WeatherResponse = w;
-          return {id, name, weather, main} as WeatherResponse
-        }))
-    });
-  }
-}
+    if (window.sessionStorage.getItem('userPosition')) {
+      this.userPosition = JSON.parse(window.sessionStorage.getItem('userPosition'));
+      this.userWeather$ = this.httpService.getWeatherWithLocation(this.userPosition).pipe();
+    } else {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const { longitude, latitude } = position.coords;
+          this.userPosition = { longitude: longitude, latitude: latitude }
+          window.sessionStorage.setItem('userPosition', JSON.stringify(this.userPosition))
+          this.userWeather$ = this.httpService.getWeatherWithLocation(this.userPosition).pipe(
+            map(w => {
+              const { id, name, weather, main }: WeatherResponse = w;
+              return { id, name, weather, main } as WeatherResponse
+            }))
+        });
+      }
+    }
   }
 
   toggleNavButtons(): void {
     setTimeout(() => {
-      if(this.slider) {
+      if (this.slider) {
         const slider = this.slider.nativeElement as HTMLElement;
         if (slider.firstElementChild) {
           const sliderWidth = slider.clientWidth
@@ -85,10 +85,10 @@ if(window.sessionStorage.getItem('userPosition')) {
             this.navButton = false;
           }
         }
-    
+
       }
     }, 100);
-      }
+  }
 
   removeLocation(id: number): void {
     this.apiService.removeLocation(id).then(() => {

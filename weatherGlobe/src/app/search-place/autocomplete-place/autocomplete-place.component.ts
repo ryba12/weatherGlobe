@@ -16,7 +16,7 @@ export class AutocompletePlaceComponent implements OnInit {
   filteredOptions$: Observable<Array<Place>>;
   @Output() locationEmitter = new EventEmitter<Gps>();
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.searchPlace()
@@ -24,19 +24,19 @@ export class AutocompletePlaceComponent implements OnInit {
 
   searchPlace(): void {
     this.filteredOptions$ = this.placeControl.valueChanges
-    .pipe(
-    filter((query: string) =>  query?.length > 2),
-    debounceTime(500),
-    distinctUntilChanged(),
-    switchMap(val => 
-       this.httpService.getPlaces(val)
-    ),
-    map(m => m.features.filter(f => f.place_type.includes("place")))
-    );
+      .pipe(
+        filter((query: string) => query?.length > 2),
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap(val =>
+          this.httpService.getPlaces(val)
+        ),
+        map(m => m.features.filter(f => f.place_type.includes("place")))
+      );
   }
 
   obtainWeatherForPlace(gps: [number, number]): void {
-    const location: Gps  = { longitude: gps[0], latitude: gps[1]};
+    const location: Gps = { longitude: gps[0], latitude: gps[1] };
     this.locationEmitter.emit(location);
   }
 
