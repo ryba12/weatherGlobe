@@ -17,6 +17,7 @@ export class RequestInterceptor implements HttpInterceptor {
     },
     ),
     catchError((error: HttpErrorResponse) => {
+      // any errorComponent
         alert(error.message) 
       return throwError(error);
     })

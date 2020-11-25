@@ -4,6 +4,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { finalize, map, tap } from 'rxjs/operators';
 import { Gps, WeatherResponse } from '../models/models';
+import { Texts } from '../models/texts';
 import { ApiService } from '../services/api.service';
 import { HttpService } from '../services/http.service';
 
@@ -20,6 +21,7 @@ export class MainDashboardComponent implements OnInit, AfterViewInit {
   userWeather$: Observable<WeatherResponse>;
   userPosition: Gps;
   navButton: boolean;
+  readonly text: typeof Texts = Texts;
 
   constructor(private apiService: ApiService, private httpService: HttpService) { }
 
@@ -54,7 +56,7 @@ export class MainDashboardComponent implements OnInit, AfterViewInit {
       this.userPosition = JSON.parse(window.sessionStorage.getItem('userPosition'));
       this.userWeather$ = this.httpService.getWeatherWithLocation(this.userPosition).pipe();
     } else {
-      if (navigator.geolocation) {
+      if (navigator.geolocation as Geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           const { longitude, latitude } = position.coords;
           this.userPosition = { longitude: longitude, latitude: latitude }
@@ -77,8 +79,6 @@ export class MainDashboardComponent implements OnInit, AfterViewInit {
           const sliderWidth = slider.clientWidth
           const childElementCount = slider.childElementCount;
           const singleBoxWidth = slider.firstElementChild.clientWidth
-          let test: number;
-          test = childElementCount * singleBoxWidth;
           if (sliderWidth <= childElementCount * singleBoxWidth) {
             this.navButton = true;
           } else {

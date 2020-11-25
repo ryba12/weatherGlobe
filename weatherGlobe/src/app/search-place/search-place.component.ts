@@ -5,6 +5,7 @@ import { Gps, WeatherResponse } from 'src/app/models/models';
 import { map, tap } from 'rxjs/operators';
 import { HttpService } from 'src/app/services/http.service';
 import { ApiService } from '../services/api.service';
+import { Texts } from '../models/texts';
 
 @Component({
   selector: 'app-search-place',
@@ -15,6 +16,7 @@ export class SearchPlaceComponent implements OnInit {
 
   public placeControl = new FormControl();
   public weather$: Observable<WeatherResponse>;
+  readonly text: typeof Texts = Texts;
   
   constructor(private httpService: HttpService, private apiService: ApiService) {}
 

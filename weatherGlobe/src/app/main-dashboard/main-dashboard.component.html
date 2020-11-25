@@ -1,15 +1,15 @@
 <nav>
-    <button mat-stroked-button routerLink="/search" class="" color="basic">Dodaj lokalizację</button>
+    <button mat-stroked-button routerLink="/search" class="" color="basic">{{text.ADD_LOCATION}}</button>
 </nav>
 <main class="mainSection">
     <aside class="yourLocationWidget" *ngIf="userWeather$ | async as userWeather">
-        <h5>Twoja lokalizacja</h5>
+        <h5>{{text.YOUR_LOCATION}}</h5>
         <app-weather-info [weather]="userWeather"></app-weather-info>
     </aside>
     <ng-container  *ngIf="weathers$ | async as weathers">
         <div *ngIf="navButton && weathers.length > 1" class="weatherSlider__navi">
-            <button mat-stroked-button (click)="scroll(false)" color="basic">Cofnij</button>
-            <button mat-stroked-button (click)="scroll(true)" color="basic">Dalej</button>
+            <button mat-stroked-button (click)="scroll(false)" color="basic">{{text.BACK}}</button>
+            <button mat-stroked-button (click)="scroll(true)" color="basic">{{text.NEXT}}</button>
         </div>
         <section class="weatherSlider">
             <article #sliderList class="weatherSlider__list">

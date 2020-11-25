@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Gps, Place } from 'src/app/models/models';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 import { HttpService } from 'src/app/services/http.service';
+import { Texts } from 'src/app/models/texts';
 
 @Component({
   selector: 'app-autocomplete-place',
@@ -14,6 +15,7 @@ export class AutocompletePlaceComponent implements OnInit {
 
   placeControl = new FormControl();
   filteredOptions$: Observable<Array<Place>>;
+  readonly text: typeof Texts = Texts;
   @Output() locationEmitter = new EventEmitter<Gps>();
 
   constructor(private httpService: HttpService) { }
